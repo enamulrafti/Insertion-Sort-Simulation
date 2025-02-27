@@ -46,8 +46,8 @@ button:hover {
     transform: scale(1.05);
 }
 
-#simulation {
-    margin-top: 40px;
+.hidden {
+    display: none;
 }
 
 #array-container {

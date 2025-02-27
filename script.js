@@ -31,7 +31,6 @@ function generateSteps(arr) {
     
     for (let i = 1; i < copy.length; i++) {
         const key = copy[i];
-        // Step: highlight key
         steps.push({
             array: [...copy],
             keyIndex: i,
@@ -42,7 +41,6 @@ function generateSteps(arr) {
         
         let j = i - 1;
         while (j >= 0 && copy[j] > key) {
-            // Step: show comparison
             steps.push({
                 array: [...copy],
                 keyIndex: i,
@@ -52,7 +50,6 @@ function generateSteps(arr) {
             });
             
             copy[j + 1] = copy[j];
-            // Step: show shift
             steps.push({
                 array: [...copy],
                 keyIndex: i,
@@ -63,7 +60,6 @@ function generateSteps(arr) {
             j--;
         }
         copy[j + 1] = key;
-        // Step: show insertion
         steps.push({
             array: [...copy],
             keyIndex: i,
@@ -80,7 +76,6 @@ async function updateDisplay() {
     const container = document.getElementById('array-container');
     container.innerHTML = '';
     
-    // Clear animation queue
     animationQueue = [];
     
     step.array.forEach((num, index) => {
@@ -100,13 +95,11 @@ async function updateDisplay() {
             element.classList.add('sorted');
         }
 
-        // Position elements with animation
         element.style.transition = 'transform 0.5s';
         element.style.transform = `translateX(${index * 85}px)`;
         
         container.appendChild(element);
         
-        // Add movement animation
         if (currentStep > 0 && steps[currentStep].array[index] !== steps[currentStep-1].array[index]) {
             animationQueue.push(() => {
                 element.classList.add('moving');
@@ -115,17 +108,14 @@ async function updateDisplay() {
         }
     });
 
-    // Update explanation
     document.getElementById('explanation').innerHTML = `
         <strong>Step ${currentStep + 1} of ${steps.length}:</strong> 
         ${step.description}
     `;
 
-    // Update button states
     document.getElementById('prevBtn').disabled = currentStep === 0;
     document.getElementById('nextBtn').disabled = currentStep === steps.length - 1;
 
-    // Execute animations
     await new Promise(r => setTimeout(r, 50));
     animationQueue.forEach(fn => fn());
 }
