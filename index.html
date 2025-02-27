@@ -9,18 +9,23 @@
 <body>
     <div class="container">
         <h1>Insertion Sort Simulation</h1>
+        
         <div class="input-section">
-            <label for="size">Number of elements:</label>
-            <input type="number" id="size" min="1" max="20">
-            <label for="array">Enter array (comma-separated):</label>
-            <input type="text" id="array">
+            <label for="size">Number of elements (2-15):</label>
+            <input type="number" id="size" min="2" max="15" value="5">
+            
+            <label for="array">Enter array (comma-separated numbers):</label>
+            <input type="text" id="array" placeholder="e.g. 5,3,8,4,2">
+            
             <button onclick="startSimulation()">Start Simulation</button>
         </div>
+
         <div id="simulation" class="hidden">
             <div id="array-container"></div>
+            <div id="explanation"></div>
             <div class="controls">
-                <button onclick="prevStep()" id="prevBtn">Previous</button>
-                <button onclick="nextStep()" id="nextBtn">Next</button>
+                <button onclick="prevStep()" id="prevBtn">Previous Step</button>
+                <button onclick="nextStep()" id="nextBtn">Next Step</button>
             </div>
         </div>
     </div>
